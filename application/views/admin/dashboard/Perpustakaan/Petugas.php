@@ -19,7 +19,7 @@
       <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Dashboard</li>
-            <li class="active">Inventaris Kursi</li>
+            <li class="active">Data Petugas</li>
           </ol>
     </section>
     <!-- Main content -->
@@ -34,7 +34,7 @@
                       </div>
                 <?php } ?>
                 <div class="box-header">
-                  <h3 class="box-title">Inventaris Kursi
+                  <h3 class="box-title">Tambah Petugas
                     <a class="btn btn-flat btn-success btn-sm" id="tambahKelas"><i class="fa fa-plus" ></i></a>
                   </h3>
                 </div><!-- /.box-header -->
@@ -44,10 +44,9 @@
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>ID Kursi</th>
-                        <th>Jenis Kursi</th>
-                        <th>Lokasi Kursi</th>
-                        <th>Kondisi</th>
+                        <th>Kode Petugas</th>
+                        <th>Nama</th>
+                        <th>Alamat</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -57,32 +56,22 @@
                      foreach ($inven as $item){  ?>
                       <tr>
                         <td><?=$i++;?></td>
-                        <td><?=$item->id_kursi;?></td>
-                        <td><?=$item->jenisKursi;?></td>
-                        <td><?=$item->ruangan;?>,<?=$item->gedung?></td>
-                        <?php if($item->status == 1){ ?>
+                        <td><?=$item->KdPetugas;?></td>
+                        <td><?=$item->Nama;?></td>
+                        <td><?=$item->Alamat?></td>
                         <td>
-                          <span class="btn btn-success btn-xs" >Layak Pakai</span>
-                        </td>
-                        <?php }else{ ?>
-                        <td>
-                          <span class="btn btn-danger btn-xs" >Tidak Layak Pakai</span>
-                        </td>
-                        <?php } ?>
-                        <td>
-                            <a href="<?=base_url("/Inventaris/hapus/Kursi/{$item->id_kursi}");?>" class="btn btn-danger btn-xs" alt="Hapus Kusri"><i class="fa fa-trash"></i> Hapus</a>
-                            <a href="<?=base_url("/Inventaris/edit/Kursi/{$item->id_kursi}");?>" class="btn  btn-warning btn-xs" alt="edit kursi"><i class="fa fa-pencil"> Edit</i></a>
+                           <a href="<?=base_url("/Perpustakaan/hapus/Petugas/{$item->KdPetugas}");?>" class="btn btn-danger btn-xs" alt="Hapus Petugas"><i class="fa fa-trash"></i> Hapus</a>
+                            <a href="<?=base_url("/Perpustakaan/edit/Petugas/{$item->KdPetugas}");?>" class="btn  btn-warning btn-xs" alt="Edit Petugas"><i class="fa fa-pencil"> Edit</i></a>
                         </td>
                       </tr>
                       <?php } ?>
                     </tbody>
                     <tfoot>
                       <tr>
-                       <th>No</th>
-                        <th>ID Kursi</th>
-                        <th>Jenis Kursi</th>
-                        <th>Lokasi Kursi</th>
-                        <th>Kondisi</th>
+                        <th>No</th>
+                        <th>Kode Anggota</th>
+                        <th>Nama</th>
+                        <th>Alamat</th>
                         <th>Aksi</th>
                       </tr>
                     </tfoot>
@@ -99,88 +88,32 @@
                   <div class="modal-content">
                       <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                          <h4 class="modal-title" id="myModalLabel">Tambah Inventaris Kursi</h4>
+                          <h4 class="modal-title" id="myModalLabel">Tambah Petugas</h4>
                       </div>
                       <div class="modal-body">
 
-                          <form class="form-horizontal" method="POST" action="<?php echo base_url('Inventaris/addNew/kursi');?>" enctype="multipart/form-data">
+                          <form class="form-horizontal" method="POST" action="<?php echo base_url('Perpustakaan/addNew/petugas');?>" enctype="multipart/form-data">
                               <div class="form-group">
-                                  <label class="col-md-4 control-label">Kode Kursi</label>
+                                  <label class="col-md-4 control-label">Kode Petugas</label>
                                   <div class="col-md-6 has-error">
-                                      <input type="text" class="form-control" name="id">
+                                      <input type="text" class="form-control" name="KdPetugas">
                                       <small class="help-block"></small>
                                   </div>
                               </div>
-                              <div class="form-group">
-                                  <label class="col-md-4 control-label">Jenis Kursi</label>
+                                <div class="form-group">
+                                  <label class="col-md-4 control-label">Nama</label>
                                   <div class="col-md-6 has-error">
-                                      <select class="form-control" name="jenisKursi" >
-                                          <?php  foreach ($jenis as $data) { ?>
-                                          <option value="<?=$data->id_jenis_kursi?>"><?=$data->nama?></option>
-                                          <?php } ?>
-                                      </select>
+                                      <input type="text" class="form-control" name="Nama">
                                       <small class="help-block"></small>
                                   </div>
                               </div>
-                              <div class="form-group">
-                                  <label class="col-md-4 control-label">Gedung</label>
+                                <div class="form-group">
+                                  <label class="col-md-4 control-label">Alamat</label>
                                   <div class="col-md-6 has-error">
-                                      <select class="form-control" name="gedung" id="id_gedung" >
-                                        <option value="0" disable="true" selected="true">=== PILIH Gedung ===</option>
-                                          <?php foreach ($gedung as $data) {?>
-                                          <option value="<?=$data->id_gedung?>"><?=$data->nama?></option>
-                                          <?php } ?>
-                                      </select>
+                                      <input type="text" class="form-control" name="Alamat">
                                       <small class="help-block"></small>
                                   </div>
                               </div>
-                              <div class="form-group">
-                                  <label class="col-md-4 control-label">Ruangan</label>
-                                  <div class="col-md-6 has-error">
-                                      <select class="form-control" name="ruangan" id="ruangan">
-                                         <option value="0" disable="true" selected="true">=== PILIH ===</option>
-                                      </select>
-                                      <small class="help-block"></small>
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                  <label class="col-md-4 control-label">Type Kursi</label>
-                                  <div class="col-md-6 has-error">
-                                      <select class="form-control" name="type" >
-                                          <?php  foreach ($type as $data) { ?>
-                                          <option value="<?=$data->kode_barang?>"><?=$data->type?></option>
-                                          <?php } ?>
-                                      </select>
-                                      <small class="help-block"></small>
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                  <label class="col-md-4 control-label">Tahun Perolehan</label>
-                                  <div class="col-md-6 has-error">
-                                      <input type="text" class="form-control" name="tahun">
-                                      <small class="help-block"></small>
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                  <label class="col-md-4 control-label">Kondisi</label>
-                                  <div class="col-md-6 has-error">
-                                      <select class="form-control" name="kondisi">
-
-                                          <option value="1">Layak Pakai</option>
-                                          <option value="0">Tidak Layak Pakai</option>
-
-                                      </select>
-                                      <small class="help-block"></small>
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                  <label class="col-md-4 control-label">Banyak Kursi</label>
-                                  <div class="col-md-6 has-error">
-                                      <input type="text" class="form-control" name="loop">
-                                      <small class="help-block"></small>
-                                  </div>
-                              </div>
-
                               <div class="form-group">
                                   <div class="col-md-6 col-md-offset-4">
                                       <button type="submit" class="btn btn-primary" id="button-reg">
@@ -211,61 +144,6 @@
     <script src="<?=base_url('assets/admin/plugins')?>/datatables/jquery.dataTables.min.js"></script>
     <script src="<?=base_url('assets/admin/plugins')?>/datatables/dataTables.bootstrap.min.js"></script>
 
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $('#id_gedung').change(function(){
-          var gedung = $(this).val();
-
-          //alert(gedung);
-
-          $.ajax({
-            url:'<?=base_url()?>Inventaris/ruangan',
-            method: 'post',
-            data: {gedung: gedung},
-            dataType: 'json',
-            success: function(response){
-
-
-              // Remove options
-              $('#ruangan').find('option').not(':first').remove();
-
-              // Add options
-              $.each(response,function(index,data){
-                 $('#ruangan').append('<option value="'+data['id_ruangan']+'">'+data['nama']+'</option>');
-              });
-            }
-          });
-        });
-      });
-
-    </script>
-     <script type="text/javascript">
-      function fileValidation(){
-
-        var fileInput = document.getElementById('file');
-        var filePath = fileInput.value;
-        var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-        if(!allowedExtensions.exec(filePath))
-        {
-          alert('Please upload file having extensions .jpeg/.jpg/.png/.gif only.');
-          fileInput.value = '';
-          return false;
-        }
-        else
-        {
-         //Image preview
-          if (fileInput.files && fileInput.files[0])
-          {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-              document.getElementById('imagePreview').innerHTML = '<img style="height: 50%; width:40%;" src="'+e.target.result+'"/>';
-            };
-            reader.readAsDataURL(fileInput.files[0]);
-         }
-        }
-      }
-    </script>
-
     <script>
       $(function () {
 
@@ -291,11 +169,11 @@
             var form = "#myModal2";
             $(form).find('select option').removeAttr('selected');
 
-            $(form).find('input[name="id_kursi"]').val($(this).attr('data-id_kursi'));
-            // $(form).find('input[name="jenisKursi"]').val($(this).attr('data-jenisKursi'));
+            $(form).find('input[name="id_Meja"]').val($(this).attr('data-id_Meja'));
+            // $(form).find('input[name="jenisMeja"]').val($(this).attr('data-jenisMeja'));
             // $(form).find('input[name="gedung"]').val($(this).attr('data-gedung'));
 
-            insert = $(form).find('#formEditKelas').attr('action')+"/"+$(this).attr('data-id_kursi');
+            insert = $(form).find('#formEditKelas').attr('action')+"/"+$(this).attr('data-id_Meja');
             $(form).find('#formEditKelas').attr('action',insert);
             //console.log('test');
 
