@@ -5,6 +5,9 @@ class Perpustakaan extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
+		if($this->session->set_userdata('logged_in') == FALSE){
+			redirect(base_url('login'))
+		}
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 		$this->load->model('DataMaster_Buku');
@@ -17,7 +20,7 @@ class Perpustakaan extends CI_Controller {
 
 	public function index()
 	{
-		redirect( base_url() );
+		$this->load->view('admin/dashboard/index');
 	}
 	public function listBuku()
 	{

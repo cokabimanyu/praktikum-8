@@ -52,3 +52,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+//Routes
+$route['login'] = 'logincontroller';
+$route['auth_login'] = 'logincontroller/login';
+$route['logout'] = 'logincontroller/logout';
+
+$route['buku'] = 'bukucontroller';
+$route['buku/create'] = 'bukucontroller/create';
+$route['buku/edit/(:num)'] = 'bukucontroller/edit/$1';
+$route['buku/store'] = 'bukucontroller/store';
+$route['buku/destroy/(:num)'] = 'bukucontroller/destroy/$1';
+$route['buku/update'] = 'bukucontroller/update';
+
+$route['anggota'] = 'anggotacontroller';
+$route['anggota/create'] = 'anggotacontroller/create';
+$route['anggota/edit/(:num)'] = 'anggotacontroller/edit/$1';
+$route['anggota/store'] = 'anggotacontroller/store';
+$route['anggota/destroy/(:num)'] = 'anggotacontroller/destroy/$1';
+$route['anggota/update'] = 'anggotacontroller/update';
+
+$route['pinjaman'] = 'pinjamancontroller';
+$route['pinjaman/create'] = 'pinjamancontroller/create';
+$route['pinjaman/edit/(:num)'] = 'pinjamancontroller/edit/$1';
+$route['pinjaman/store'] = 'pinjamancontroller/store';
+$route['pinjaman/destroy/(:num)'] = 'pinjamancontroller/destroy/$1';
+$route['pinjaman/update'] = 'pinjamancontroller/update';
+
+$route['pegawai'] = 'pegawaicontroller';
+$route['pegawai/create'] = 'pegawaicontroller/create';
+$route['pegawai/edit/(:num)'] = 'pegawaicontroller/edit/$1';
+$route['pegawai/store'] = 'pegawaicontroller/store';
+$route['pegawai/destroy/(:num)'] = 'pegawaicontroller/destroy/$1';
+$route['pegawai/update'] = 'pegawaicontroller/update';
